@@ -6,8 +6,7 @@ app.use(express.json());
 const post = require("../models/postSchema");
 const router = express.Router();
 router.get("/", async (req, res) => {
-  const posts = await post.find({ user: req.user });
-  console.log(req.user);
+  const posts = await post.find();
 
   res.status(200).json({
     status: "Success",
