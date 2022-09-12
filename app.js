@@ -42,7 +42,7 @@ app.use("/posts", (req, res, next) => {
 });
 ///checking the server
 app.get("/", (req, res) => {
-  res.json("server is working");
+  res.status(200).json("server is working");
 });
 
 ////router

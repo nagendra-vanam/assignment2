@@ -22,14 +22,14 @@ router.post(
       const alredyuser = await registerSchema.findOne({ email });
       console.log(alredyuser);
       if (alredyuser) {
-        return res.json({
+        return res.status(400).json({
           status: "registration failed",
           message: "email already used",
         });
       }
       bcrypt.hash(password, 10, async (err, hash) => {
         if (err) {
-          return res.json({
+          return res.status(404).json({
             status: "failed",
           });
         }
@@ -39,13 +39,13 @@ router.post(
           email,
           password: hash,
         });
-        res.json({
+        res.status(201).json({
           satatus: "success",
           users,
         });
       });
     } catch (e) {
-      res.json({
+      res.status(400).json({
         status: "registration failed",
         message: e.message,
       });

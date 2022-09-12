@@ -46,14 +46,14 @@ router.post(
             secret
           );
 
-          res.json({
+          res.status(200).json({
             status: "Sucess",
             token,
           });
         }
       });
     } catch (e) {
-      res.json({
+      res.status(400).json({
         status: "Login failed",
         message: e.message,
       });

@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   const posts = await post.find({ user: req.user });
   console.log(req.user);
 
-  res.json({
+  res.status(200).json({
     status: "Success",
     posts,
   });
@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     image: req.body.image,
     user: req.user,
   });
-  res.json({
+  res.status(200).json({
     status: "Success",
     posts,
   });
@@ -30,18 +30,15 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const posts = await post.findOneAndUpdate({ _id: req.params.id }, req.body);
-  const allposts = await post.find();
-  res.json({
+  res.status(200).json({
     status: "success",
-    allposts,
   });
 });
 router.delete("/:id", async (req, res) => {
   const posts = await post.findOneAndDelete({ _id: req.params.id }, req.body);
-  const allposts = await post.find();
-  res.json({
+
+  res.status(200).json({
     status: "success",
-    allposts,
   });
 });
 module.exports = router;
